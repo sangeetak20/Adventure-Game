@@ -1,0 +1,830 @@
+// textadventure.cpp
+// Sangeeta Kumar, CISP 360
+// 5/19/2021
+#include <iostream>
+#include <string>
+using namespace std; 
+
+
+// Specification A3 - Put your monsters in a Monster() class.
+class Monsters
+{
+  public : 
+  string cat = "(^~^)~*"; 
+  string smelly = "(-_-) =3 =3 =3 "; 
+  string ghost = "LL(*O*)LL"; 
+  string spider = "\\/\\( 0 0 U 0 0 )/\\/"; 
+
+  // Specification A1 Add more monsters
+  string dog = "^(u-u)^";   
+};
+
+class Room 
+{
+  public: 
+  string room_title;  
+  string room_description; 
+  int room_ID; 
+  bool beenThere;
+  int occupiedCode[4]; 
+
+  Monsters monsters;
+
+  Room(){
+    room_title = "";
+    room_description = "";
+    room_ID = -1;
+    beenThere = false;
+    occupiedCode[0] = false;
+    occupiedCode[1] = false;
+    occupiedCode[2] = false;
+    occupiedCode[3] = false;
+  }
+
+  Room(string room_title_p, string room_description_p, int room_ID_p, int occupiedCode_p[])
+  {
+    room_title = room_title_p; 
+    room_description = room_description_p; 
+    room_ID = room_ID_p;  
+    beenThere = false;
+    occupiedCode[0] = occupiedCode_p[0];
+    occupiedCode[1] = occupiedCode_p[1];
+    occupiedCode[2] = occupiedCode_p[2];
+    occupiedCode[3] = occupiedCode_p[3];
+  }
+
+  void Event (string& name) 
+  {
+    if(beenThere)
+    {
+      // Specification C4 – Abbreviated Room Description
+      cout << endl;
+      cout << "Room Title: " << room_title << endl;
+      cout << endl;cout << endl; 
+      
+      if(room_ID == 0){
+        
+
+      }
+      else if(room_ID == 1){
+        cout << ""<<monsters.cat<<": 'Have you talked to all of the other monsters?'" << endl;  
+        cout << "1. Yes" << endl; 
+        cout << "2. No" << endl; 
+        int catbeenthere; 
+        do
+        {
+          cin >> catbeenthere; 
+          if (catbeenthere == 1 )
+          {
+            cout << ""<<monsters.cat<<": 'You can proceed through the door behind me.'" << endl;
+          }
+          else  if (catbeenthere == 2)
+          {
+            cout << ""<<monsters.cat<<": 'Then what are you doing disturbing me?'" << endl; 
+          }
+          else 
+          {
+            cout << "invalid choice" << endl; 
+          }
+        }
+        while (catbeenthere != 1 && catbeenthere != 2); 
+      }
+
+      else if(room_ID == 2){
+        cout << ""<<monsters.smelly<<": 'Hey what are you still doing here? I told you what you asked for just leave already.'" << endl;  
+
+      }
+      else if(room_ID == 3){
+        cout << "Catherine: 'Who are you again? Sorry but I do not allow visitors.'" << endl; 
+
+      }
+      else if(room_ID == 4){
+        cout << "*You enter the spider's room and see the corpse of the slain spider*" << endl; 
+
+      }
+      else if(room_ID == 5){
+
+      }
+    }
+    
+    else
+    {   
+      cout << endl;
+      cout << "Room Title: " << room_title << endl;
+      cout << "Room Description: " << room_description << endl; 
+      cout << endl;
+      if(room_ID == 0){
+
+      }
+      else if(room_ID == 1){
+        cout << monsters.cat << endl;
+        cout << "*You enter a room where a cat is sleeping. Awakened by the sound of the door opening, it looks up at you." << endl;
+        cout << ""<<monsters.cat<<": 'Meow can I help you human? You rudely interrupted my beauty sleep.'" << endl;  
+        cout << ""<< name <<": 'I am trying to find a way to get out of this dungeon. Do you think you could help?'" << endl;  
+        cout << ""<<monsters.cat<<": 'I can tell you...for a price that is...'" << endl; 
+        cout <<  ""<< name <<": 'What do you mean?'" << endl; 
+        cout << ""<<monsters.cat<<": 'Well I would like a treat of some sort. I'm starving and there are no shops as you can see.'" << endl; 
+        cout << "*You see that you have a tuna sandwich packed in your bag. Do you give it to the cat?*" << endl; 
+        cout << "1. Yes" << endl; 
+        cout << "2. No" << endl; 
+        int catchoice; 
+        do 
+        {
+          cin >> catchoice; 
+          if (catchoice == 1)
+          {
+            cout << "'I have this tuna sandwich. Is that ok?'" << endl; 
+            cout << ""<<monsters.cat<<": 'Yes! That is more than ok! I will take it!'" << endl; 
+            cout << "*The cat takes your tuna sandwich and proceeds to eat it*" << endl; 
+            cout << ""<< name <<": 'Can you help me out of this dungeon now?'" << endl; 
+            cout << ""<<monsters.cat<<": 'Well I don't know how to actually leave but if you talk to the monsters in the other rooms and pass their tests you would be free to go. Once you have talked to all of them, come talk to me and I can let you through the door where you will be judged for your actions.'" << endl; 
+            cout << ""<< name <<": 'Does this mean I passed your test?'" << endl; 
+            cout << ""<<monsters.cat<<": 'With flying colors! Now go away I want to go back to bed.'" << endl; 
+            cout << "*The cat goes back to sleep.*" << endl; 
+          } 
+          else if (catchoice == 2)
+          {
+            cout << ""<< name <<": 'I don't have anything.'" << endl;  
+            cout << ""<<monsters.cat<<": 'Then it seems like I can't help you.'" << endl;  
+          }
+          else 
+          {
+            cout << "Invalid choice" << endl; 
+          }
+        }
+        while (catchoice !=1); 
+      }
+      
+      else if(room_ID == 2){
+        cout << "*You enter a room that reeks of garbage and old laundry. " << endl; 
+        cout << "It is filled to the brim with random objects, garbage bags, and empty containers." << endl; 
+        cout << "Instantly, you plug your nose, trying to hold in your breath.*" << endl; 
+        cout << ""<< name <<"  : 'Hello? Is anyone in here?'" << endl; 
+        cout << "*You see something move in the giant heaps of trash*" << endl; 
+        cout << monsters.smelly << endl; 
+        cout << ""<<monsters.smelly<<": 'Who is it?'" << endl;  
+        cout << ""<< name <<": 'It's "<< name <<"'" << endl; 
+        cout << ""<<monsters.smelly<<": 'Who?'" << endl;  
+        cout << "*You see something emerging from the corner of the room, coming out from underneath one of the trashbags." << endl; 
+        cout << "The creature is three feet tall, wearing no shoes and raggedy clothes. It has a hat that makes it look like one of the seven dwarves--if one of them was named Smelly." << endl; 
+        cout << ""<<monsters.smelly<<": 'Who are you?'" << endl; 
+        cout << ""<< name <<": 'I'm an adventurer and I am lost in this dungeon do you think you could help me out?'" << endl; 
+        cout << ""<<monsters.smelly<<": 'Why are you plugging your nose?'" << endl;  
+        cout << ""<< name <<": 'Because it reeks in here. Do you think you could help me or not?'" << endl;  
+        cout << ""<<monsters.smelly<<": 'I don't find anything wrong with the smell. " << endl; 
+        cout << "'Oh, you know what, it could actually be the cheese that I stored in here over a millenia ago. " << endl; 
+        cout << "Lemme see if I can find it...'" << endl; 
+        cout << ""<< name <<": 'No you don't have to. Actually, I would prefer it if you didn't." << endl;  
+        cout << "I just want to find a way out of this dungeon.'" << endl;  
+        cout << ""<<monsters.smelly<<": 'I'll only help you if you can find my missing sock. It's blue and it has a hole in it.'" << endl; 
+        cout << ""<< name <<": 'Why would you want a sock with a hole--ok nevermind. Where did you last see it?'" << endl;  
+        cout << ""<<monsters.smelly<<": 'Oh somewhere over there.'" << endl;  
+        cout << "*The creature gestures towards the corner of the room it came from*" << endl; 
+        cout << "*You approach the trash bag he came from and start rustling through the mess.*" << endl; 
+        cout << "*You find a hairbrush, an old scarf, and a jacket but no sock.*" << endl; 
+        cout << "*Realizing that you have to give the creature something, you must decide between these three." << endl; 
+        cout << "Which one do you pick?*" << endl; 
+        cout << "1. Hairbrush" << endl;
+        cout << "2. The old scarf" << endl; 
+        cout << "3. Jacket" << endl; 
+        int creaturechoice; 
+        do
+        {
+        cin >> creaturechoice; 
+        if (creaturechoice == 1 || creaturechoice == 2)
+        {
+          cout << ""<<monsters.smelly<<": 'Hey this isn't what I asked for! Go back and pick out the sock!'" << endl; 
+        }
+        
+        else if (creaturechoice == 3)
+        {
+          cout << ""<<monsters.smelly<<": 'This is a really nice jacket!'" << endl;  
+          cout << "*The creature tries it on. It looks to be a men's medium and covers the creature's body entirely.*" << endl; 
+          cout << "*The creature reaches into the jacket pocket*" << endl; 
+          cout << ""<<monsters.smelly<<": 'What is this? Oh! It's my old sock!'" << endl; 
+          cout << ""<< name <<": 'Will you give me some advice as to how to leave this dungeon now?'" << endl;  
+          cout << ""<<monsters.smelly<<": 'Well...I don't really know anything about that but " << endl; 
+          cout << "I bet that if you talk to the other monsters they might be able to help you out!'" << endl;  
+          cout << "*You leave the room a bit annoyed at the creature for wasting your time but continue your way on*" << endl; 
+        }
+        else 
+        {
+          cout << "Invalid choice" << endl; 
+        }
+        }
+        while (creaturechoice != 3);
+      }
+
+
+      else if(room_ID == 3){
+        cout << "*You enter into a room that is eerily cold. The door immediately shuts behind you. " << endl; 
+        cout << "A breeze comes through but there are no windows.*" << endl; 
+        cout << ""<< name <<": 'Hello?'" << endl;  
+        cout << "*Another cold breeze hits*" << endl; 
+        cout << "Ghost: 'Who are you?'" << endl;  
+        cout << "*A voice asks. You can't see anybody in the room. It's so dim that you can't even see your hands.*" << endl; 
+        cout << ""<< name <<": 'Hello? Is anybody there?'" << endl;  
+        cout << "Ghost: 'Yes it's me. Who are you?'" << endl;  
+        cout << ""<< name <<": 'I'm *name* and I can't seem to find my way out of this dungeon do you think you could help?'" << endl; 
+        cout << "*Suddenly candles on the sides of the walls are lit, lighting up the room. " << endl; 
+        cout << "You see a couch directly in front of you topped with dust and cobwebs hanging off of it. " << endl; 
+        cout << "To your left you see a broken mirror with a grey sheet halfway strewn across it. " << endl; 
+        cout << "On your right you see a portrait of a woman, her hair black, lips red, and skin pale.*" << endl; 
+        cout << "Ghost: 'What are you doing here?'" << endl;  
+        cout << "*A voice asks. Despite the room being lit up, you cannot pin a face to the voice you've been hearing*" << endl;
+        cout << ""<< name <<": 'Where are you?'" << endl;  
+        cout << "Ghost: 'I'm right in front of you.'" << endl;  
+        cout << "*A ghost appears looking like the woman in the portrait*" << endl; 
+        cout << monsters.ghost << endl; 
+        cout << "Ghost: 'If you need help to find your way out of this dungeon I can certainly help you." << endl; 
+        cout << "But you will have to return the favor.'" << endl;  
+        cout << ""<< name <<": 'What is the favor?'" << endl;  
+        cout << "Ghost: 'Can you please write my lover a letter? I'm a ghost you see and I don't think that they know that quite yet." << endl;
+        cout << "Also, I cannot physically move objects. My hands just go right through them.'" << endl;  
+        cout << ""<< name <<": 'When did you die?'" << endl; 
+        cout << "Ghost: 'Oh let's see...about 1886? Yes, after the civil war.'" << endl;  
+        cout << ""<< name <<": *Not wanting to make her upset, you sit down at a desk against the wall with the portrait*" << endl; 
+        cout << "'What would you like me to write?'" << endl; 
+        cout << "*The ghost details her love life and how she misses her lover.*" << endl; 
+        cout << "He was a general in the Civil War and the ghost expresses how much she misses him so.*" << endl; 
+        cout << "Ghost: 'This was marvelous thank you!'" << endl;  
+        cout << "*You rest the paper on the desk, reading it over. " << endl; 
+        cout << "Suddenly, another breeze comes in, this time more forceful than the last. " << endl; 
+        cout << "Another ghost appears. looking like a man dressed in a Civil War uniform.*" << endl; 
+        cout << "Ghost: 'Lawrence?!'" << endl; 
+        cout << "Lawrence: 'Hello Catherine, I heard that you were writing a letter to me. " << endl; 
+        cout << " I already know that you are a ghost my dear. Why are you acting as if I do not know?'" << endl;  
+        cout << "Catherine: 'Ah I must have forgotten. Silly me.'" << endl;  
+        cout << "Lawrence: 'You do this every week or so.'" << endl;  
+        cout << ""<< name <<": 'Uh...So can you still help me get out of this dungeon?'" << endl;  
+        cout << "Catherine: 'If you talk to everyone in this dungeon you will be able to leave.'" << endl;  
+        cout << ""<< name <<": 'Thank you!'" << endl;  
+        cout << "*You leave the ghost couple's room*" << endl;
+      }
+      else if(room_ID == 4)
+      { 
+      cout << "*You enter a room covered with webs. Right in front of you, you see a giant spider*" << endl; 
+      cout << ""<<monsters.spider<<": 'Hmmm what is this we have here? Who has made their way into my chamber?'" << endl;  
+      cout << ""<< name <<": 'I'm looking for a way out of this dungeon do you think you could help me?'" << endl;  
+      cout << ""<<monsters.spider<<": 'I'm not too sure...maybe if you came a little bit closer I could tell you.'" << endl;  
+      cout << "*A bit apprehensive you shuffle a few feet forward.*" << endl; 
+      cout << ""<<monsters.spider<<": 'A little closer...come on I won't bite.'" << endl;  
+      cout << ""<< name <<": 'I think I'm good from here.'" << endl;  
+      cout << ""<<monsters.spider<<": 'Fine. Then I will come to you.'" << endl;  
+      cout << "*The spider comes down from its giant web and approaches you.* " << endl; 
+      cout << ""<<monsters.spider<<": 'Hmm...yes...these two new arms will do well for me...'" << endl;  
+      cout << "*Do you fight the spider?*" << endl; 
+      cout << "1. Yes" << endl; 
+      cout << "2. No" << endl; 
+      
+      int spiderchoice;
+     
+      do{
+        cin >> spiderchoice; 
+        if (spiderchoice == 2)
+        {
+          cout << "*The spider takes rips off one of your arms and you fall to the ground, howling in pain. " << endl; 
+          cout << "You try to stop the bleeding with your other hand, but the spider rips off your other arm." << endl; 
+          cout << "You continue to bleed out and are left crying from pain and eventually die." << endl; 
+          cout << "Maybe you should have tried to fight off the spider.*" << endl; 
+        }
+
+        else if (spiderchoice == 1)
+        {
+            cout << "*You grab your sword. You are now going to fight the spider!*" << endl; 
+
+            cout << "  Spider" << endl; 
+            cout << "Health: 100 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+            cout << endl; 
+            cout << endl; 
+            cout << endl; 
+            cout << "                         You" << endl;
+            cout << "(/ o V o/)              Health: 100 " << endl; 
+            cout << "What will you do?    > 1. Use Sword" << endl; 
+            cout << "                     > 2. Punch" << endl;
+            int fightchoice; 
+             
+            do {
+              cin >> fightchoice;
+              if (fightchoice == 1)
+              {
+                // Specification B3 - Add combat
+                cout << " Spider" << endl; 
+                cout << "Health: 40 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "                         You" << endl;
+                cout << "(/ o V o/)              Health: 100 " << endl; 
+                cout << "Use Sword was effective!" << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << " Spider" << endl; 
+                cout << "Health: 40 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "                         You" << endl;
+                cout << "(/ o V o/)              Health: 80 " << endl; 
+                cout << "Spider uses BITE it was weak!" << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "  Spider" << endl; 
+                cout << "Health: 40 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "                         You" << endl;
+                cout << "(/ o V o/)              Health: 80 " << endl; 
+                cout << "What will you do?    > 1. Use Sword" << endl; 
+                cout << "                     > 2. Punch" << endl;
+                int fightchoice2; 
+                
+                do 
+                {
+                  cin >> fightchoice2;
+                  if (fightchoice2 == 1)
+                  {
+                    cout << "  Spider" << endl; 
+                    cout << "Health: 0 ╲/\\( X X _  X X )/\\╱  " << endl;
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "                         You" << endl;
+                    cout << "(/ o V o/)              Health: 80 " << endl; 
+                    cout << "Use Sword was effective!" << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "╲/\\( X X _  X X )/\\╱ " << endl; 
+                    cout << ""<<monsters.spider<<": 'I didn't expect to be beaten like this...you have won adventurer.'" << endl;  
+                    cout << ""<< name <<": 'Can you please tell me now how to get out of here?'" << endl;  
+                    cout << ""<<monsters.spider<<": 'Go to the door past the cat room once you have talked to everyone in the dungeon.'" << endl;  
+                    cout << "*The spider dies and you leave*" << endl; 
+
+                  }
+
+                  else if (fightchoice2 == 2)
+                  {
+                    cout << "  Spider" << endl; 
+                    cout << "Health: 0 ╲/\\( X X _  X X )/\\╱ " << endl;
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "                         You" << endl;
+                    cout << "(/ o V o/)              Health: 80 " << endl; 
+                    cout << "Punch was effective!" << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "/\\/\\(XX - XX)/\\/\\'" << endl; 
+                    cout << ""<<monsters.spider<<": 'I didn't expect to be beaten like this...you have won adventurer.'" << endl;  
+                    cout << ""<< name <<": 'Can you please tell me now how to get out of here?'" << endl;  
+                    cout << ""<<monsters.spider<<": 'Go to the door past the cat room once you have talked to everyone in the dungeon.'" << endl;  
+                    cout << "*The spider dies and you leave*" << endl; 
+
+                  }
+                }
+                while (fightchoice2 != 1 && fightchoice != 2);
+                
+              }
+              else if (fightchoice == 2)
+              {
+              cout << " Spider" << endl; 
+                cout << "Health: 40 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "                         You" << endl;
+                cout << "(/ o V o/)              Health: 100 " << endl; 
+                cout << "Punch was effective!" << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << " Spider" << endl; 
+                cout << "Health: 40 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "                         You" << endl;
+                cout << "(/ o V o/)              Health: 80 " << endl; 
+                cout << "Spider uses BITE it was weak!" << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "  Spider" << endl; 
+                cout << "Health: 40 \\/\\( 0 0 U 0 0 )/\\/ " << endl;
+                cout << endl; 
+                cout << endl; 
+                cout << endl; 
+                cout << "                         You" << endl;
+                cout << "(/ o V o/)              Health: 100 " << endl; 
+                cout << "What will you do?    > 1. Use Sword" << endl; 
+                cout << "                     > 2. Punch" << endl;
+                int fightchoice2; 
+                
+                do
+                {
+                  cin >> fightchoice2;
+                if (fightchoice2 == 1)
+                {
+                  cout << "  Spider" << endl; 
+                    cout << "Health: 0 /\\/\\(XX - XX)/\\/\\ " << endl;
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "                         You" << endl;
+                    cout << "(/ o V o/)              Health: 80 " << endl; 
+                    cout << "Use Sword was effective!" << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "//\\/\\ (XX - XX) /\\/\\'" << endl; 
+                    cout << ""<<monsters.spider<<": 'I didn't expect to be beaten like this...you have won adventurer.'" << endl;  
+                    cout << ""<< name <<": 'Can you please tell me now how to get out of here?'" << endl;  
+                    cout << ""<<monsters.spider<<": 'Go to the door past the cat room once you have talked to everyone in the dungeon.'" << endl;  
+                    cout << "*The spider dies and you leave*" << endl; 
+                }
+                else if (fightchoice2 == 2)
+                {
+                  cout << "  Spider" << endl; 
+                    cout << "Health: 0 /\\/\\ (XX - XX) /\\/\\ " << endl;
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "                         You" << endl;
+                    cout << "(/ o V o/)              Health: 100 " << endl; 
+                    cout << "Punch was effective!" << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << endl; 
+                    cout << "//\\/\\ (XX - XX) /\\/\\'" << endl; 
+                    cout << ""<<monsters.spider<<": 'I didn't expect to be beaten like this...you have won adventurer.'" << endl;  
+                    cout << ""<< name <<": 'Can you please tell me now how to get out of here?'" << endl;  
+                    cout << ""<<monsters.spider<<": 'Go to the door past the cat room once you have talked to everyone in the dungeon.'" << endl;  
+                    cout << "*The spider dies and you leave*" << endl; 
+                }
+                else 
+                {
+                  cout << "Invalid output" << endl; 
+                }
+                }
+                while (fightchoice2 != 1 && fightchoice2 != 2);
+              }
+
+            }
+            while (fightchoice != 1 && fightchoice != 2);
+        }
+        else 
+        {
+          cout << "Invalid choice. Try again" << endl; 
+        }
+      }
+      while (spiderchoice !=1);
+
+      }
+      else if(room_ID == 5){
+        cout <<" *You walk through the door and a long hallway. Finally, you can see some light at the end of the hallway." <<endl;
+        cout << "You quicken your pace and run towards the light. You are greeted by a completely white room and a small brown dog "<< endl;
+        cout << "at the center. Behind it is a white door.*" << endl;
+        cout << ""<< monsters.dog<< " :'I see you have made it through the dungeon.'" << endl; 
+        cout << ""<< name <<": 'Yes I have. I have talked to all of the monsters and would like to go back home.'" << endl;  
+        cout << ""<< monsters.dog<< " :'Before you can go back home, I have to test you on what you have learned about everyone. " << endl; 
+        cout << "Shall we proceed?'" << endl;  
+        cout << ""<< name <<": 'Yes I am ready.'" << endl;  
+        cout << ""<< monsters.dog<< " :'Alright what was the ghost's name?'" << endl;  
+        cout << "1. Catherine " << endl; 
+        cout << "2. Abigail " << endl; 
+        cout << "3. Elena " << endl;
+        cout << "4. Cindy " << endl; 
+        int dogchoice1; 
+        do 
+        {
+          cin >> dogchoice1; 
+          if (dogchoice1 == 1)
+          {
+            cout << ""<< monsters.dog<< " :'That is correct.'" << endl;  
+            cout << ""<< monsters.dog<< " :'What did the smelly creature have you look for?'" << endl;  
+            cout << "1. a hair brush " << endl; 
+            cout << "2. a jacket " << endl; 
+            cout << "3. an old scarf" << endl; 
+            cout << "4. a blue sock " << endl; 
+            int dogchoice2; 
+            do {
+              cin >>dogchoice2; 
+              if (dogchoice2 == 4)
+              {
+                cout << ""<< monsters.dog<< " :'That is correct.'" << endl; 
+                cout << ""<< monsters.dog<< " :'What did you give to the starving cat?'" << endl;  
+                cout << "1.  kitty treats " << endl; 
+                cout << "2. mice " << endl; 
+                cout << "3. tuna sandwich " << endl; 
+                cout << "4. chicken " << endl;
+                int dogchoice3; 
+                do
+                {
+                  cin >> dogchoice3; 
+                  if (dogchoice3 == 3)
+                 { 
+                   cout << ""<< monsters.dog<< " :'That is correct.'" << endl;  
+                   cout << ""<< monsters.dog<< " :'Final question: What item did use to kill the spider?'" << endl; 
+                    cout << "1. A gun " << endl; 
+                    cout << "2. A sword " << endl; 
+                    cout << "3. A knife " << endl; 
+                    cout << "4. Bug repellant" << endl; 
+                    int dogchoice4; 
+                    do
+                    {
+                      cin >> dogchoice4; 
+                      if( dogchoice4 == 2)
+                      {
+                        cout << ""<< monsters.dog<< " :'That is correct.'" << endl;  
+                        cout << ""<< monsters.dog<< " :'You have passed all of my questions. You are free to leave now.'" << endl; 
+                        cout << "*The door behind the doge opens and you can see the outside world. " << endl;
+                        cout << "You step outside of the door, basking in the warm sunlight and the smell of fresh air. " << endl; 
+                        cout << "You turn around to thank the dog but the door is gone.*" << endl; 
+                        cout << endl; 
+                        cout << endl; 
+                        cout << endl; 
+                        cout << "Game Over" << endl; 
+                        cout << "Thank you for playing my game! I hope you had a fun time!" << endl; 
+                        exit(0);
+
+                      }
+                      else if (dogchoice4 == 1 ||dogchoice4 == 3 || dogchoice4 == 4)
+                      {
+                        cout << ""<< monsters.dog<< " :This was the only battle in the entire dungeon and you don't even remember? Try again." << endl; 
+                      }
+                      else
+                      {
+                        cout << ""<< monsters.dog<< " :This wasn't even an option. Stop choosing this." << endl; 
+                      } 
+                    }
+                    while (dogchoice4 != 2);
+                   
+                 }
+
+                 else if (dogchoice3 == 1 ||dogchoice3 ==2 ||dogchoice3 == 4)
+                 {
+                   cout << ""<< monsters.dog<< " :This seemed like a no-brainer to me. Choose again." << endl;
+                 }
+                 else
+                 {
+                   cout << ""<< monsters.dog<< " :Why would you choose this? It's not even an option. Use your brain next time." << endl; 
+                 }
+                } 
+                while (dogchoice3 != 3);
+                
+              }
+
+              else if (dogchoice2 == 1 ||dogchoice2 ==2 || dogchoice2 == 3)
+              {
+                cout << ""<< monsters.dog<< " :This is not the correct option. Please choose a different choice." << endl; 
+              }
+              else
+              {
+                cout << ""<< monsters.dog<< " :If it wasn't an option that means that it wasn't correct. Choose again" << endl; 
+              }
+
+            }
+            while (dogchoice2 != 4 );
+           
+
+          }
+          else if (dogchoice1 == 2 || dogchoice1 == 3 || dogchoice1 == 4)
+          {
+            cout << ""<< monsters.dog<< " :This is not correct. Choose wisely this time." << endl; 
+          }
+          
+          else 
+          {
+            cout << ""<< monsters.dog<< " :This is not even on the list of choices I gave you. For shame. Choose again" << endl; 
+          }
+          
+        }
+        while (dogchoice1 != 1); 
+      }
+    }
+
+
+  }
+
+
+  
+}; 
+
+class Protagonist
+{
+  public:
+  int occupiedRoomID = 0; 
+  string name; 
+
+  void SetName(string name_p)
+  {
+    name = name_p; 
+  }
+
+  void ExecuteLevel (Room& room_p)
+  {
+    occupiedRoomID = room_p.room_ID;
+    room_p.Event(name);
+    room_p.beenThere = true;
+  }
+
+}; 
+
+class Dungeon
+{
+  public: 
+  string Dungeonfx; 
+
+  int startingOccupiedCode[4] = {1, 2, 3, 4};
+  int CatRoomgOccupiedCode[4] = {5, -1, 0, -1};
+  int SmellyRoomOccupiedCode[4] = {-1, -1, -1, 0};
+  int GhostRoomOccupiedCode[4] = {0, -1 , -1, -1 };
+  int SpiderRoomOccupiedCode[4] = {-1, 0, -1, -1};
+  int DogRoomOccupiedCode[4] = {-1, -1, 1, -1};
+ 
+ // Specification C1 - Five Rooms
+ // Specifciation B2 Add more rooms
+ // Specification A2 Use an array of structs.
+  Room starting = Room("Starting Room", "This is where you spawn.", 0, startingOccupiedCode); 
+  Room catRoom = Room("Cat Room", "The cat resides in this room.", 1, CatRoomgOccupiedCode);
+  Room smellyRoom = Room("Smelly Room", "Someone who is very smelly is in this room. Please don't startle him or he will fart on you.", 2, SmellyRoomOccupiedCode);
+  Room ghostRoom = Room("Ghost Room", "A ghost resides in this room. Enter if you dare", 3, GhostRoomOccupiedCode);
+  Room spiderRoom = Room("Spider Room", "A spider is in this room. Enter if you dare", 4, SpiderRoomOccupiedCode);
+  Room finalRoom = Room("Final Room", "This is the final room. Did you first visit and meet all of the other monsters?", 5, DogRoomOccupiedCode);
+
+  Room rooms[6] = {starting, catRoom, smellyRoom, ghostRoom, spiderRoom, finalRoom}; 
+
+  int currentRoom;
+
+  void ShowMap () 
+  {
+    cout <<"-------------------------------------------\n";
+    cout <<"|             |             |             |\n";
+    cout <<"|     Map     |      5      |      N      |\n";
+    cout <<"|     of      |             |      |      |\n";
+    cout <<"|   Dungeon   ------   ------   W--+--E   |\n";
+    cout <<"|             |             |      |      |\n";
+    cout <<"|             |      1      |      S      |\n";
+    cout <<"|             |             |             |\n";
+    cout <<"|-------------------   -------------------|\n";
+    cout <<"|             |             |             |\n";
+    cout <<"|      4             0             2      |\n";
+    cout <<"|             |             |             |\n";
+    cout <<"|-------------------   -------------------|\n";
+    cout <<"|             |             |             |\n";
+    cout <<"|             |      3      |             |\n";
+    cout <<"|             |             |             |\n";
+    cout <<"-------------------------------------------\n";
+
+  }
+
+  void StartGame()
+  {
+    ShowMap();
+    Protagonist player; 
+    // Specification C2 - Player Name
+    string userName; 
+    cout << "What is your name?\n";
+    getline (cin, userName);
+    player.SetName(userName); 
+
+    currentRoom = 0;
+    
+    char input = '\0'; 
+    do 
+    {
+      player.ExecuteLevel(rooms[currentRoom]);
+      cout << "---------------------------" << endl; 
+      cout << endl; 
+      cout << "Where would you like to go?" << endl; 
+      cout << "(Press N, S, E, or W)" << endl; 
+      cout << "If you would like to see the map, press M" << endl; 
+      cout << "If you would like to see the room title or room description, press L" << endl; 
+      cout << endl; 
+      cout << "---------------------------" << endl; 
+
+      do{
+        cin >> input; 
+        if(input != 'N' && input != 'S' && input != 'E' && input != 'W' && input != 'M' && input != 'L'){
+          cout << "Try Again.\n";
+        }
+      }while(input != 'N' && input != 'S' && input != 'E' && input != 'W'&& input != 'M' && input != 'L');
+
+      //for(int i = 0; i < 6; i++) cout << rooms[i].beenThere << " ";
+      //cout << endl;
+
+      if(currentRoom == 1 && input == 'N'){
+        if(!(rooms[1].beenThere == true && rooms[2].beenThere == true && rooms[3].beenThere == true && rooms[4].beenThere == true )){
+          cout << "You shall not go in yet\n";
+          currentRoom = 1;
+          continue;
+        }
+      }
+
+      if(input == 'N' && rooms[currentRoom].occupiedCode[0] != -1){
+        int temp = rooms[currentRoom].occupiedCode[0];    
+        
+        for(int i = 0; i < 6; i++){
+          if(rooms[i].room_ID == temp){
+            currentRoom = i;
+          }
+        }
+        
+      }
+
+      else if(input == 'E' && rooms[currentRoom].occupiedCode[1] != -1){
+        int temp = rooms[currentRoom].occupiedCode[1];
+        for(int i = 0; i < 6; i++){
+          if(rooms[i].room_ID == temp){
+            currentRoom = i;
+          }
+        }
+        
+      }
+      
+      else if(input == 'S' && rooms[currentRoom].occupiedCode[2] != -1){
+        int temp = rooms[currentRoom].occupiedCode[2];
+        for(int i = 0; i < 6; i++){
+          if(rooms[i].room_ID == temp){
+            currentRoom = i;
+          }
+        }
+        
+      }
+      
+      else if(input == 'W' && rooms[currentRoom].occupiedCode[3] != -1){
+        int temp = rooms[currentRoom].occupiedCode[3];
+        for(int i = 0; i < 6; i++){
+          if(rooms[i].room_ID == temp){
+            currentRoom = i;
+          }
+        }
+        
+      }
+
+      // Specification B1 Add more command options.
+      else if (input == 'M')
+      {
+        cout << endl; 
+        ShowMap();
+        cout << endl;
+      }
+      // Specification C5 - Detailed Look
+      else if (input == 'L')
+      {
+        cout << endl;
+        cout << "Room Title: " << rooms[currentRoom].room_title << endl;
+        cout << "Room Description: " << rooms[currentRoom].room_description << endl;
+        cout << endl;
+      }
+
+      else if (rooms[currentRoom].occupiedCode[0] == -1 ||  rooms[currentRoom].occupiedCode[1] == -1 ||rooms[currentRoom].occupiedCode[2] == -1 ||rooms[currentRoom].occupiedCode[3] == -1)
+      {
+        cout << "Invalid Direction. Please try a valid direction" << endl; 
+      }
+      
+      
+      
+    }
+    // Specification C3 - Input Validation
+    while (input == 'N' || input == 'S'|| input == 'E'|| input == 'W' || input == 'M' || input == 'L'); 
+    
+
+
+  }
+  
+
+  
+}; 
+
+
+void ProgramGreeting();
+
+int main() {
+  ProgramGreeting();
+  Dungeon dungeon; 
+  dungeon.StartGame(); 
+}
+
+
+void ProgramGreeting ()
+{
+  cout << "Sangeeta Kumar" << endl; 
+  cout << "May 19, 2021" << endl; 
+  cout << "Hello, welcome to my program! You are trapped in a dungeon and the only way to get out is to defeat all of the monsters before exiting through the Final Room." << endl; 
+  cout << "Please note that for the directions you must use capital letters" << endl; 
+  cout << "This is a text based adventure game. I hope you have fun!" << endl; 
+}
